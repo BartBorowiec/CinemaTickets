@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Seanse</title>
+</head>
+<body>
+<nav>
+    <a th:href="@{/cinema/}">Lista kin</a>
+    <a th:href="@{/register/}">Zarejestruj</a>
+    <a th:href="@{/login/}">Zaloguj</a>
+</nav>
+<p>Wybierz seans:</p>
+<ul>
+    <li th:each="screening : ${screenings}">
+        <a th:href="@{/screening/{id}(id=${screening.id})}" th:text="${#temporals.format(screening.startTime, 'dd-MM-yyyy HH:mm')}">screening</a>
+    </li>
+</ul>
+
+</body>
+</html>

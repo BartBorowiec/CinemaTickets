@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Bilety do kina</title></head>
+<body>
+<nav>
+    <a th:href="@{/cinema}">Lista kin</a>
+    <a th:href="@{/register}">Zarejestruj</a>
+    <a th:href="@{/login}">Zaloguj</a>
+</nav>
+<h1>Witaj!</h1>
+<p>Zarezerwuj bilet w <span th:text="${appName}">Our App</span></p>
+</body>
+</html>

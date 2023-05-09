@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nasze kina</title>
+</head>
+<body>
+    <nav>
+        <a th:href="@{/cinema/}">Lista kin</a>
+        <a th:href="@{/register/}">Zarejestruj</a>
+        <a th:href="@{/login/}">Zaloguj</a>
+    </nav>
+    <p>Wybierz interesujące Cię kino:</p>
+    <ul>
+        <li th:each="cinema : ${cinemas}">
+            <a th:href="@{/cinema/{city}(city=${cinema.city})}" th:text="${cinema.city}">city</a>
+        </li>
+    </ul>
+
+</body>
+</html>

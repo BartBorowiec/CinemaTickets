@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${'Seans '+ reservation.screening.movie.title}"></title>
+</head>
+<body>
+<nav>
+  <a th:href="@{/cinema/}">Lista kin</a>
+  <a th:href="@{/register/}">Zarejestruj</a>
+  <a th:href="@{/login/}">Zaloguj</a>
+</nav>
+<div>
+  <h2 th:text="${reservation.screening.movie.title}"></h2>
+  <p th:text="${#temporals.format(reservation.screening.startTime, 'dd-MM-yyyy HH:mm')}"></p>
+  <form th:method="POST" th:action="@{/reservation}" >
+    <table th:object="${reservation}">
+      <input th:type="hidden" th:field="*{screening}">
+      <tr>
+        <th></th>
+        <th th:each="i : ${#numbers.sequence(0, reservation.screening.auditorium.seatsInRow - 1)}" th:text="${ i + 1 }"></th>
+      </tr>
+      <tr th:each="i : ${#numbers.sequence(0, reservation.screening.auditorium.seatRows - 1)}">
+        <th th:text="${ i + 1 }"></th>
+        <td th:each="j : ${#numbers.sequence(0, reservation.screening.auditorium.seatsInRow - 1)}">
+          <input th:type="hidden" th:field="*{seats[__${reservation.screening.auditorium.seatsInRow * i + j}__].rowNumber}">
+          <input th:type="hidden" th:field="*{seats[__${reservation.screening.auditorium.seatsInRow * i + j}__].seatNumber}">
+          <input
+                  th:disabled="*{seats[__${reservation.screening.auditorium.seatsInRow * i + j}__].isTaken}"
+                  th:field="*{seats[__${reservation.screening.auditorium.seatsInRow * i + j}__].isTaken}"
+                  th:type="checkbox"
+          >
+        </td>
+      </tr>
+    </table>
+    <input th:type="submit" th:value="Zarezerwuj">
+  </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title th:text='Zarezerwowano'>Cinema details</title></head>
+<body>
+<nav>
+    <a th:href="@{/cinema/}">Lista kin</a>
+    <a th:href="@{/register/}">Zarejestruj</a>
+    <a th:href="@{/login/}">Zaloguj</a>
+</nav>
+<div>
+    <p th:each="ticket : ${reservation.tickets}" th:text="${ticket}"></p>
+</div>
+</body>
+</html>
